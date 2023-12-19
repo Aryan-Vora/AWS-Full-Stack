@@ -1,26 +1,19 @@
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-
-function About({signOut, user}) {
+import {Authenticator} from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+function About() {
   return (
-    <div>
-      <h1>About Page Content</h1>
-      <h1>Hey, {user.signInDetails.loginId}</h1>
-      <button onClick={signOut}>Sign out</button>
-      <Link to="/">Site Map</Link>
-    </div>
+    <Authenticator>
+      {({signOut, user}) => (
+        <div>
+          <h1>About Page Content</h1>
+          <h1>Hey, {user && user.signInDetails.loginId}</h1>
+          <Link to="/map">Site Map</Link>
+          <button onClick={signOut}>Sign out</button>
+        </div>
+      )}
+    </Authenticator>
   );
 }
 
-About.propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string,
-    userId: PropTypes.string,
-    signInDetails: PropTypes.shape({
-      loginId: PropTypes.string,
-      authFlowType: PropTypes.string,
-    }),
-  }),
-  signOut: PropTypes.func,
-};
 export default About;
