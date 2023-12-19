@@ -1,5 +1,13 @@
 <!doctype html>
 <html lang="en">
+  <script>
+    window.global = window;
+    window.process = {
+      env: { DEBUG: undefined },
+    }
+    var exports = {};
+  </script>
+</body>
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
